@@ -16,29 +16,31 @@
           <v-ons-list>
             <v-ons-list-item v-for="page in pages"
               tappable modifier="chevron"
-              @click="openSide = false">
-              {{page}}
+              @click="openSide = false; $router.push(page.path)">
+              {{page.label}}
             </v-ons-list-item>
           </v-ons-list>
         </v-ons-page>
       </v-ons-splitter-side>
 
       <v-ons-splitter-content>
-        <v-ons-page >
-          <router-view />
-        </v-ons-page>
+        <router-view />
       </v-ons-splitter-content>
     </v-ons-splitter>
   </div>
 </template>
 
 <script>
+import Router from './router'
 export default {
   name: 'App',
   data: () => {
     return({
       openSide: false,
-      pages: ["menu1", "menu2"]
+      pages: [
+        {label: "Top", path: "/"},
+        {label: "page1", path: "/page1"}
+       ]
     });
   }
 }
@@ -54,6 +56,6 @@ export default {
   margin-top: 60px;
 }
 .content {
-  margin-top: 56px;
+  margin-top: 58px;
 }
 </style>
